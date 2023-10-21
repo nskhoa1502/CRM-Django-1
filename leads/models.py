@@ -36,8 +36,14 @@ class Lead(models.Model):
 
     agents = models.ForeignKey("Agent", on_delete=models.CASCADE, default=1)
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
 # Agent is a user, so we can use the built-in user model, one-to-one relationship
 
 
 class Agent(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
